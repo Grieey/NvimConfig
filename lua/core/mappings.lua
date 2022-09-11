@@ -1,5 +1,5 @@
--- n, v, i, t = mode names 
--- command - D, Ctrl - C, Alt - A , Options - M (only in mac) M is Meta key  
+-- n, v, i, t = mode names
+-- command - D, Ctrl - C, Alt - A , Options - M (only in mac) M is Meta key
 
 local function termcodes(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -10,8 +10,8 @@ local M = {}
 M.general = {
   i = {
     -- go to  beginning and end
-    ["<M-h>"] = { "<ESC>^i", "beginning of line"},
-    ["<M-l>"] = { "<End>", "end of line"},
+    ["<M-h>"] = { "<ESC>^i", "beginning of line" },
+    ["<M-l>"] = { "<End>", "end of line" },
 
     -- navigate within insert mode
     ["<C-h>"] = { "<Left>", "move left" },
@@ -19,13 +19,13 @@ M.general = {
     ["<C-j>"] = { "<Down>", "move down" },
     ["<C-k>"] = { "<Up>", "move up" },
     -- 复制相关
-    ["<D-v>"] = { "<ESC>*pa","paste from clipboard"},
-    ["<M-v>"] = { "<ESC>pa","paste from buffer"},
+    ["<D-v>"] = { "<ESC>*pa", "paste from clipboard" },
+    ["<M-v>"] = { "<ESC>pa", "paste from buffer" },
   },
 
   n = {
     ["<ESC>"] = { "<cmd> noh <CR>", "no highlight" },
-    ["qq"] = { ":qa<CR>", "quit all"},
+    ["qq"] = { ":qa<CR>", "quit all" },
 
     -- 跳行首(非首个空格字符)行尾
     ["<M-h>"] = { "^", "beginning of line" },
@@ -36,22 +36,22 @@ M.general = {
     ["wc"] = { "<C-w>c", "close split window" },
     ["wo"] = { "<C-w>o", "close other window" },
     -- 左分屏比例
-    ["w,"] = { ":vertical resize -10<CR>"},
-    ["w."] = { ":vertical resize +10<CR>"},
+    ["w,"] = { ":vertical resize -10<CR>" },
+    ["w."] = { ":vertical resize +10<CR>" },
     -- 上下分屏比例
-    ["wj"] = { "resize +10<CR>"},
-    ["wk"] = { "resize -10<CR>"},
+    ["wj"] = { "resize +10<CR>" },
+    ["wk"] = { "resize -10<CR>" },
     -- 等比例
-    ["w="] = { "<C-w>="},
+    ["w="] = { "<C-w>=" },
     -- 修改当前字符
-    ["cc"] = { "s", "delete current char and insert"},
-    ["cw"] = { "vwc", "visual mode change the w action select word"},
-    ["ce"] = { "vec", "visual mode change the e action select word"},
-    ["cb"] = { "vbc", "visual mode chagne the b action select word"},
+    ["cc"] = { "s", "delete current char and insert" },
+    ["cw"] = { "vwc", "visual mode change the w action select word" },
+    ["ce"] = { "vec", "visual mode change the e action select word" },
+    ["cb"] = { "vbc", "visual mode chagne the b action select word" },
     -- 快速选择到行首行尾
-    ["sh"] = { "v^", "change to visual mode and select to the beginning"},
-    ["sl"] = { "v<End>", "change to visual mode and select to the end"},
-    ["ss"] = { "v^<End>", "change to visual mode and select the whole column"},
+    ["sh"] = { "v^", "change to visual mode and select to the beginning" },
+    ["sl"] = { "v<End>", "change to visual mode and select to the end" },
+    ["ss"] = { "v^<End>", "change to visual mode and select the whole column" },
 
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "window left" },
@@ -61,12 +61,12 @@ M.general = {
 
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "save file" },
+    ["<M-f>"] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "format" },
 
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "copy whole file" },
-    -- Paste from clipboard 
-		["<D-v>"] = { "*p","paste from clipboard"},
-
+    -- Paste from clipboard
+    ["<D-v>"] = { "*p", "paste from clipboard" },
 
     -- line numbers
     ["<leader>n"] = { "<cmd> set nu! <CR>", "toggle line number" },
@@ -109,8 +109,8 @@ M.general = {
     ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', opts = { expr = true } },
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', opts = { expr = true } },
     -- 移动行首行尾
-    ["<M-h>"] = { "<ESC>^i", "beginning of line"},
-    ["<M-l>"] = { "<End>", "end of line"},
+    ["<M-h>"] = { "<ESC>^i", "beginning of line" },
+    ["<M-l>"] = { "<End>", "end of line" },
   },
 
   x = {

@@ -12,7 +12,7 @@ local sources = {
   b.formatting.prettier,
 
   -- lua
-  b.formatting.stylelua,
+  b.formatting.stylua,
   -- shell
   b.formatting.shfmt,
   b.diagnostics.shellcheck.with { diagnostics_format = "#{m} [#{c}]" },
