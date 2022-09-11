@@ -1,4 +1,5 @@
--- n, v, i, t = mode names
+-- n, v, i, t = mode names 
+-- command - D, Ctrl - C, Alt - A , Options - M (only in mac) M is Meta key 
 
 local function termcodes(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -9,8 +10,8 @@ local M = {}
 M.general = {
   i = {
     -- go to  beginning and end
-    ["<C-b>"] = { "<ESC>^i", "beginning of line" },
-    ["<C-e>"] = { "<End>", "end of line" },
+    ["<M-h>"] = { "<ESC>^i", "beginning of line"},
+    ["<M-l>"] = { "<End>", "end of line"},
 
     -- navigate within insert mode
     ["<C-h>"] = { "<Left>", "move left" },
@@ -21,6 +22,28 @@ M.general = {
 
   n = {
     ["<ESC>"] = { "<cmd> noh <CR>", "no highlight" },
+
+    -- 跳行首(非首个空格字符)行尾
+    ["<M-h>"] = { "^", "beginning of line" },
+    ["<M-l>"] = { "<End>", "end of line" },
+    -- 分屏相关
+    ["sh"] = { ":sp<CR>", "split horizontal" },
+    ["sv"] = { ":vsp<CR>", "split vertical" },
+    ["sc"] = { "<C-w>c", "close split window" },
+    ["so"] = { "<C-w>o", "close other window" },
+    -- 左分屏比例
+    ["s,"] = { ":vertical resize -10<CR>"},
+    ["s."] = { ":vertical resize +10<CR>"},
+    -- 上下分屏比例
+    ["sj"] = { "resize +10<CR>"},
+    ["sk"] = { "resize -10<CR>"},
+    -- 等比例
+    ["s="] = { "<C-w>="},
+    -- 修改当前字符
+    ["cc"] = { "s", "delete current char and insert"},
+    ["cw"] = { "vwc", "visual mode change the w action select word"},
+    ["ce"] = { "vec", "visual mode change the e action select word"},
+    ["cb"] = { "vbc", "visual mode chagne the b action select word"},
 
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "window left" },
@@ -33,12 +56,15 @@ M.general = {
 
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "copy whole file" },
+    -- Paste from clipboard
+		["<C-v>"] = { "*p","paste from clipboard"},
+
 
     -- line numbers
     ["<leader>n"] = { "<cmd> set nu! <CR>", "toggle line number" },
     ["<leader>rn"] = { "<cmd> set rnu! <CR>", "toggle relative number" },
 
-    -- update nvchad
+    -- update nnchad
     ["<leader>uu"] = { "<cmd> :NvChadUpdate <CR>", "update nvchad" },
 
     ["<leader>tt"] = {
@@ -58,10 +84,10 @@ M.general = {
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', opts = { expr = true } },
 
     -- new buffer
-    ["<leader>b"] = { "<cmd> enew <CR>", "new buffer" },
+    ["<C-n>"] = { "<cmd> enew <CR>", "new buffer" },
 
     -- close buffer + hide terminal buffer
-    ["<leader>x"] = {
+    ["<C-x>"] = {
       function()
         require("core.utils").close_buffer()
       end,
@@ -262,7 +288,7 @@ M.nvimtree = {
 
   n = {
     -- toggle
-    ["<C-n>"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
+    ["<C-m>"] = { "<cmd> NvimTreeToggle <CR>", "toggle nvimtree" },
 
     -- focus
     ["<leader>e"] = { "<cmd> NvimTreeFocus <CR>", "focus nvimtree" },
@@ -293,7 +319,6 @@ M.telescope = {
     ["<leader>th"] = { "<cmd> Telescope themes <CR>", "nvchad themes" },
   },
 }
-
 M.nvterm = {
   plugin = true,
 
@@ -323,26 +348,26 @@ M.nvterm = {
 
   n = {
     -- toggle in normal mode
-    ["<A-i>"] = {
-      function()
-        require("nvterm.terminal").toggle "float"
-      end,
-      "toggle floating term",
-    },
+    -- ["<A-i>"] = {
+    --   function()
+    --     require("nvterm.terminal").toggle "float"
+    --   end,
+    --   "toggle floating term",
+    -- },
 
-    ["<A-h>"] = {
-      function()
-        require("nvterm.terminal").toggle "horizontal"
-      end,
-      "toggle horizontal term",
-    },
+    -- ["<A-h>"] = {
+    --   function()
+    --     require("nvterm.terminal").toggle "horizontal"
+    --   end,
+    --   "toggle horizontal term",
+    -- },
 
-    ["<A-v>"] = {
-      function()
-        require("nvterm.terminal").toggle "vertical"
-      end,
-      "toggle vertical term",
-    },
+    -- ["<A-v>"] = {
+    --   function()
+    --     require("nvterm.terminal").toggle "vertical"
+    --   end,
+    --   "toggle vertical term",
+    -- },
 
     -- new
 

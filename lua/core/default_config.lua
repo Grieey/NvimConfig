@@ -19,7 +19,13 @@ M.ui = {
   transparency = false,
 }
 
-M.plugins = {}
+M.plugins = {
+  user = {
+    ["goolord/alpha-nvim"] = {
+      disable = false,
+    }
+  }
+}
 
 -- check core.mappings for table structure
 M.mappings = require "core.mappings"

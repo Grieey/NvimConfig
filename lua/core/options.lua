@@ -57,6 +57,16 @@ opt.whichwrap:append "<>[]hl"
 
 g.mapleader = " "
 
+opt.guifont = "JetBrainsMono Nerd Font:h22"
+vim.cmd([[
+if exists("g:neovide")
+  let g:neovide_refresh_rate=60
+  let g:neovide_refresh_rate_idle=5
+  let g:neovide_fullscreen=v:true
+  let g:neovide_scroll_animation_length=0.3
+  let g:neovide_input_macos_alt_is_meta=v:true
+endif
+]])
 -- disable some builtin vim plugins
 local default_plugins = {
   "2html_plugin",
