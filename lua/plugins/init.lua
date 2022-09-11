@@ -11,6 +11,13 @@ local plugins = {
     end,
   },
 
+  ["jose-elias-alvarez/null-ls.nvim"] = {
+       after = "nvim-lspconfig",
+       config = function()
+          require "plugins.configs.null-ls"
+       end,
+  },
+
   ["NvChad/extensions"] = { module = { "telescope", "nvchad" } },
 
   ["NvChad/base46"] = {
