@@ -29,8 +29,6 @@ local sources = {
   },
   -- toml
   b.formatting.taplo,
-  -- dart
-  b.formatting.dart_format,
   -- rust
   b.formatting.rustfmt,
   -- lua
