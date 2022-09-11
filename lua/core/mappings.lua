@@ -56,8 +56,8 @@ M.general = {
 
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "copy whole file" },
-    -- Paste from clipboard
-		["<C-v>"] = { "*p","paste from clipboard"},
+    -- Paste from clipboard 
+		["<D-v>"] = { "*p","paste from clipboard"},
 
 
     -- line numbers
