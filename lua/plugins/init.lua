@@ -2,6 +2,16 @@ local plugins = {
 
   ["nvim-lua/plenary.nvim"] = { module = "plenary" },
 
+  ["akinsho/flutter-tools.nvim"] = {
+    wants = "nvim-lua/plenary.nvim",
+    config = function()
+      local present, flutter = pcall(require, "flutter-tools")
+      if present then
+        flutter.setup()
+      end
+    end,
+  },
+
   ["lewis6991/impatient.nvim"] = {},
 
   ["wbthomason/packer.nvim"] = {
