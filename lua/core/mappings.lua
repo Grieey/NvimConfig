@@ -1,5 +1,5 @@
 -- n, v, i, t = mode names 
--- command - D, Ctrl - C, Alt - A , Options - M (only in mac) M is Meta key 
+-- command - D, Ctrl - C, Alt - A , Options - M (only in mac) M is Meta key  
 
 local function termcodes(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
@@ -18,32 +18,40 @@ M.general = {
     ["<C-l>"] = { "<Right>", "move right" },
     ["<C-j>"] = { "<Down>", "move down" },
     ["<C-k>"] = { "<Up>", "move up" },
+    -- 复制相关
+    ["<D-v>"] = { "<ESC>*pa","paste from clipboard"},
+    ["<M-v>"] = { "<ESC>pa","paste from buffer"},
   },
 
   n = {
     ["<ESC>"] = { "<cmd> noh <CR>", "no highlight" },
+    ["qq"] = { ":qa<CR>", "quit all"},
 
     -- 跳行首(非首个空格字符)行尾
     ["<M-h>"] = { "^", "beginning of line" },
     ["<M-l>"] = { "<End>", "end of line" },
     -- 分屏相关
-    ["sh"] = { ":sp<CR>", "split horizontal" },
-    ["sv"] = { ":vsp<CR>", "split vertical" },
-    ["sc"] = { "<C-w>c", "close split window" },
-    ["so"] = { "<C-w>o", "close other window" },
+    ["wh"] = { ":sp<CR>", "split horizontal" },
+    ["wv"] = { ":vsp<CR>", "split vertical" },
+    ["wc"] = { "<C-w>c", "close split window" },
+    ["wo"] = { "<C-w>o", "close other window" },
     -- 左分屏比例
-    ["s,"] = { ":vertical resize -10<CR>"},
-    ["s."] = { ":vertical resize +10<CR>"},
+    ["w,"] = { ":vertical resize -10<CR>"},
+    ["w."] = { ":vertical resize +10<CR>"},
     -- 上下分屏比例
-    ["sj"] = { "resize +10<CR>"},
-    ["sk"] = { "resize -10<CR>"},
+    ["wj"] = { "resize +10<CR>"},
+    ["wk"] = { "resize -10<CR>"},
     -- 等比例
-    ["s="] = { "<C-w>="},
+    ["w="] = { "<C-w>="},
     -- 修改当前字符
     ["cc"] = { "s", "delete current char and insert"},
     ["cw"] = { "vwc", "visual mode change the w action select word"},
     ["ce"] = { "vec", "visual mode change the e action select word"},
     ["cb"] = { "vbc", "visual mode chagne the b action select word"},
+    -- 快速选择到行首行尾
+    ["sh"] = { "v^", "change to visual mode and select to the beginning"},
+    ["sl"] = { "v<End>", "change to visual mode and select to the end"},
+    ["ss"] = { "v^<End>", "change to visual mode and select the whole column"},
 
     -- switch between windows
     ["<C-h>"] = { "<C-w>h", "window left" },
@@ -100,6 +108,9 @@ M.general = {
   v = {
     ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', opts = { expr = true } },
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', opts = { expr = true } },
+    -- 移动行首行尾
+    ["<M-h>"] = { "<ESC>^i", "beginning of line"},
+    ["<M-l>"] = { "<End>", "end of line"},
   },
 
   x = {
@@ -391,13 +402,13 @@ M.whichkey = {
   plugin = true,
 
   n = {
-    ["<leader>wK"] = {
+    ["<leader>wk"] = {
       function()
         vim.cmd "WhichKey"
       end,
       "which-key all keymaps",
     },
-    ["<leader>wk"] = {
+    ["<leader>wK"] = {
       function()
         local input = vim.fn.input "WhichKey: "
         vim.cmd("WhichKey " .. input)

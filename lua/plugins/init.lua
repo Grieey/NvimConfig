@@ -182,7 +182,7 @@ local plugins = {
   },
   -- smooth scroll
   ["karb94/neoscroll.nvim"] = {
-    disable = false,
+    disable = true,
     config = function()
       local present, scroll = pcall(require, "neoscroll")
 
