@@ -21,6 +21,8 @@ M.general = {
     -- 复制相关
     ["<D-v>"] = { "<ESC>*pa", "paste from clipboard" },
     ["<M-v>"] = { "<ESC>pa", "paste from buffer" },
+    -- 撤销
+    ["<D-z>"] = { "<ESC>ui", "redo and insert" },
   },
 
   n = {
