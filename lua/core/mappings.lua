@@ -7,6 +7,7 @@ end
 
 local M = {}
 
+
 M.general = {
   i = {
     -- go to  beginning and end
@@ -19,10 +20,10 @@ M.general = {
     ["<C-j>"] = { "<Down>", "move down" },
     ["<C-k>"] = { "<Up>", "move up" },
     -- 复制相关
-    ["<D-v>"] = { "<ESC>*pa", "paste from clipboard" },
-    ["<M-v>"] = { "<ESC>pa", "paste from buffer" },
+    -- ["<D-v>"] = { "<ESC>*pa", "paste from clipboard" },
+    ["<D-v>"] = { "<ESC>pa", "paste from buffer" },
     -- 撤销
-    ["<D-z>"] = { "<ESC>ui", "redo and insert" },
+    ["<D-z>"] = { "<ESC>ua", "redo and insert" },
     -- 快速复制一行到下一行
     ["<D-d>"] = { "<ESC>yypA", "copy the line to next line and insert"},
   },
