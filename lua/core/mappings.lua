@@ -24,6 +24,7 @@ M.general = {
     ["<D-z>"] = { "<ESC>ua", "redo and insert" },
     -- 快速复制一行到下一行
     ["<D-d>"] = { "<ESC>yypA", "copy the line to next line and insert" },
+    ["<D-s>"] = { "<cmd> w <CR>", "save file" },
   },
 
   n = {
@@ -63,7 +64,7 @@ M.general = {
     ["<C-k>"] = { "<C-w>k", "window up" },
 
     -- save
-    ["<C-s>"] = { "<cmd> w <CR>", "save file" },
+    ["<D-s>"] = { "<cmd> w <CR>", "save file" },
     ["<M-f>"] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "format" },
     -- tip
     ["<M-x>"] = { "<cmd>Lspsaga show_line_diagnostics<CR>", "show tips" },
