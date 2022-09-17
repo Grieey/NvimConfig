@@ -6,8 +6,6 @@ local function termcodes(str)
 end
 
 local M = {}
-
-
 M.general = {
   i = {
     -- go to  beginning and end
@@ -25,7 +23,7 @@ M.general = {
     -- 撤销
     ["<D-z>"] = { "<ESC>ua", "redo and insert" },
     -- 快速复制一行到下一行
-    ["<D-d>"] = { "<ESC>yypA", "copy the line to next line and insert"},
+    ["<D-d>"] = { "<ESC>yypA", "copy the line to next line and insert" },
   },
 
   n = {
@@ -33,8 +31,8 @@ M.general = {
     ["qq"] = { ":qa<CR>", "quit all" },
 
     -- 跳行首(非首个空格字符)行尾
-    ["<M-h>"] = { "^", "beginning of line" },
-    ["<M-l>"] = { "<End>", "end of line" },
+    ["<D-h>"] = { "^", "beginning of line" },
+    ["<D-l>"] = { "<End>", "end of line" },
     -- 分屏相关
     ["wh"] = { ":sp<CR>", "split horizontal" },
     ["wv"] = { ":vsp<CR>", "split vertical" },
@@ -67,6 +65,9 @@ M.general = {
     -- save
     ["<C-s>"] = { "<cmd> w <CR>", "save file" },
     ["<M-f>"] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "format" },
+    -- tip
+    ["<M-x>"] = { "<cmd>Lspsaga show_line_diagnostics<CR>", "show tips" },
+    ["<M-c>"] = { "<cmd>Lspsaga code_action<CR>", "code action" },
 
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "copy whole file" },
@@ -114,8 +115,8 @@ M.general = {
     ["<Up>"] = { 'v:count || mode(1)[0:1] == "no" ? "k" : "gk"', opts = { expr = true } },
     ["<Down>"] = { 'v:count || mode(1)[0:1] == "no" ? "j" : "gj"', opts = { expr = true } },
     -- 移动行首行尾
-    ["<M-h>"] = { "<ESC>^i", "beginning of line" },
-    ["<M-l>"] = { "<End>", "end of line" },
+    ["<D-h>"] = { "<ESC>^", "beginning of line" },
+    ["<D-l>"] = { "<End>", "end of line" },
   },
 
   x = {

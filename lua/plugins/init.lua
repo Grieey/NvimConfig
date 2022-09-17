@@ -14,6 +14,30 @@ local plugins = {
 
   ["lewis6991/impatient.nvim"] = {},
 
+  -- 代码优化
+  ["glepnir/lspsaga.nvim"] = {
+    branch = "main",
+    config = function()
+      local ok, saga = pcall(require, "lspsage")
+      if ok then
+        saga.init_lsp_saga {
+          -- your configuration
+        }
+      end
+    end,
+  },
+
+  ["folke/trouble.nvim"] = {
+    wants = "kyazdani42/nvim-web-devicons",
+    disable = false,
+    config = function()
+      local ok, trouble = pcall(require, "trouble")
+      if ok then
+        trouble.setup()
+      end
+    end,
+  },
+
   ["wbthomason/packer.nvim"] = {
     cmd = require("core.lazy_load").packer_cmds,
     config = function()
@@ -22,10 +46,10 @@ local plugins = {
   },
 
   ["jose-elias-alvarez/null-ls.nvim"] = {
-       after = "nvim-lspconfig",
-       config = function()
-          require "plugins.configs.null-ls"
-       end,
+    after = "nvim-lspconfig",
+    config = function()
+      require "plugins.configs.null-ls"
+    end,
   },
 
   ["NvChad/extensions"] = { module = { "telescope", "nvchad" } },
@@ -205,19 +229,18 @@ local plugins = {
       local present, scroll = pcall(require, "neoscroll")
 
       if present then
-        scroll.setup({
-            -- All these keys will be mapped to their corresponding default scrolling animation
-            mappings = {'<C-u>', '<C-d>', '<C-b>', '<C-f>',
-                        '<C-y>', '<C-e>', 'zt', 'zz', 'zb'},
-            hide_cursor = true,          -- Hide cursor while scrolling
-            stop_eof = true,             -- Stop at <EOF> when scrolling downwards
-            respect_scrolloff = false,   -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-            cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-            easing_function = nil,       -- Default easing function
-            pre_hook = nil,              -- Function to run before the scrolling animation starts
-            post_hook = nil,             -- Function to run after the scrolling animation ends
-            performance_mode = false,    -- Disable "Performance Mode" on all buffers.
-        })
+        scroll.setup {
+          -- All these keys will be mapped to their corresponding default scrolling animation
+          mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
+          hide_cursor = true, -- Hide cursor while scrolling
+          stop_eof = true, -- Stop at <EOF> when scrolling downwards
+          respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
+          cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
+          easing_function = nil, -- Default easing function
+          pre_hook = nil, -- Function to run before the scrolling animation starts
+          post_hook = nil, -- Function to run after the scrolling animation ends
+          performance_mode = false, -- Disable "Performance Mode" on all buffers.
+        }
       end
     end,
   },

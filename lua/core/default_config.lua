@@ -23,8 +23,8 @@ M.plugins = {
   user = {
     ["goolord/alpha-nvim"] = {
       disable = false,
-    }
-  }
+    },
+  },
 }
 
 -- check core.mappings for table structure
