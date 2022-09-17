@@ -10,8 +10,8 @@ local M = {}
 M.general = {
   i = {
     -- go to  beginning and end
-    ["<M-h>"] = { "<ESC>^i", "beginning of line" },
-    ["<M-l>"] = { "<End>", "end of line" },
+    ["<D-h>"] = { "<ESC>^i", "beginning of line" },
+    ["<D-l>"] = { "<End>", "end of line" },
 
     -- navigate within insert mode
     ["<C-h>"] = { "<Left>", "move left" },
@@ -23,6 +23,8 @@ M.general = {
     ["<M-v>"] = { "<ESC>pa", "paste from buffer" },
     -- 撤销
     ["<D-z>"] = { "<ESC>ui", "redo and insert" },
+    -- 快速复制一行到下一行
+    ["<D-d>"] = { "<ESC>yypA", "copy the line to next line and insert"},
   },
 
   n = {
