@@ -53,8 +53,8 @@ local options = {
     end,
   },
   mapping = {
-    ["<M-k>"] = cmp.mapping.select_prev_item(),
-    ["<M-j>"] = cmp.mapping.select_next_item(),
+    ["<Up>"] = cmp.mapping.select_prev_item(),
+    ["<Down>"] = cmp.mapping.select_next_item(),
     ["<M-d>"] = cmp.mapping.scroll_docs(-4),
     ["<M-u>"] = cmp.mapping.scroll_docs(4),
     ["<C-Space>"] = cmp.mapping.complete(),

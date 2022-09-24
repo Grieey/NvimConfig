@@ -2,6 +2,7 @@ local plugins = {
 
   ["nvim-lua/plenary.nvim"] = { module = "plenary" },
 
+  -- flutter 的工具,主要提供编译相关的命令,不用再启动命令行
   ["akinsho/flutter-tools.nvim"] = {
     wants = "nvim-lua/plenary.nvim",
     config = function()
@@ -31,80 +32,7 @@ local plugins = {
     branch = "main",
     disable = false,
     config = function()
-      local ok, saga = pcall(require, "lspsage")
-      if ok then
-        local function set_sidebar_icons()
-          local diagnostic_icons = {
-            Error = " ",
-            Warn = " ",
-            Info = " ",
-            Hint = " ",
-          }
-          for type, icon in pairs(diagnostic_icons) do
-            local hl = "DiagnosticSign" .. type
-            vim.fn.sign_define(hl, { text = icon, texthl = hl })
-          end
-        end
-
-        local function get_palette()
-          if vim.g.colors_name == "catppuccin" then
-            -- If the colorscheme is catppuccin then use the palette.
-            return require("catppuccin.palettes").get_palette()
-          else
-            -- Default behavior: return lspsaga's default palette.
-            local palette = require("lspsaga.lspkind").colors
-            palette.peach = palette.orange
-            palette.flamingo = palette.orange
-            palette.rosewater = palette.yellow
-            palette.mauve = palette.violet
-            palette.sapphire = palette.blue
-            palette.maroon = palette.orange
-
-            return palette
-          end
-        end
-
-        set_sidebar_icons()
-
-        local colors = get_palette()
-
-        saga.init_lsp_saga {
-          diagnostic_header = { " ", " ", "  ", " " },
-          custom_kind = {
-            File = { " ", colors.rosewater },
-            Module = { " ", colors.blue },
-            Namespace = { " ", colors.blue },
-            Package = { " ", colors.blue },
-            Class = { "ﴯ ", colors.yellow },
-            Method = { " ", colors.blue },
-            Property = { "ﰠ ", colors.teal },
-            Field = { " ", colors.teal },
-            Constructor = { " ", colors.sapphire },
-            Enum = { " ", colors.yellow },
-            Interface = { " ", colors.yellow },
-            Function = { " ", colors.blue },
-            Variable = { " ", colors.peach },
-            Constant = { " ", colors.peach },
-            String = { " ", colors.green },
-            Number = { " ", colors.peach },
-            Boolean = { " ", colors.peach },
-            Array = { " ", colors.peach },
-            Object = { " ", colors.yellow },
-            Key = { " ", colors.red },
-            Null = { "ﳠ ", colors.yellow },
-            EnumMember = { " ", colors.teal },
-            Struct = { " ", colors.yellow },
-            Event = { " ", colors.yellow },
-            Operator = { " ", colors.sky },
-            TypeParameter = { " ", colors.maroon },
-            -- ccls-specific icons.
-            TypeAlias = { " ", colors.green },
-            Parameter = { " ", colors.blue },
-            StaticMethod = { "ﴂ ", colors.peach },
-            Macro = { " ", colors.red },
-          },
-        }
-      end
+      require "plugins.configs.lspsaga"
     end,
   },
 
@@ -126,6 +54,7 @@ local plugins = {
     end,
   },
 
+  -- 代码格式化
   ["jose-elias-alvarez/null-ls.nvim"] = {
     after = "nvim-lspconfig",
     config = function()
@@ -238,12 +167,12 @@ local plugins = {
   },
 
   -- load luasnips + cmp related in insert mode only
-
   ["rafamadriz/friendly-snippets"] = {
     module = { "cmp", "cmp_nvim_lsp" },
     event = "InsertEnter",
   },
 
+  -- 代码补齐引擎
   ["hrsh7th/nvim-cmp"] = {
     after = "friendly-snippets",
     config = function()
@@ -251,6 +180,7 @@ local plugins = {
     end,
   },
 
+  -- 代码片段引擎
   ["L3MON4D3/LuaSnip"] = {
     wants = "friendly-snippets",
     after = "nvim-cmp",
@@ -259,6 +189,7 @@ local plugins = {
     end,
   },
 
+  -- 补全源
   ["saadparwaiz1/cmp_luasnip"] = { after = "LuaSnip" },
   ["hrsh7th/cmp-nvim-lua"] = { after = "cmp_luasnip" },
   ["hrsh7th/cmp-nvim-lsp"] = { after = "cmp-nvim-lua" },
