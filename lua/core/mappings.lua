@@ -67,7 +67,8 @@ M.general = {
     ["<D-s>"] = { "<cmd> w <CR>", "save file" },
     ["<M-f>"] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "format" },
     -- tip
-    ["<D-,>"] = { "<cmd>Lspsaga show_line_diagnostics<CR>", "show tips" },
+    -- ["<D-,>"] = { "<cmd>Lspsaga show_line_diagnostics<CR>", "show tips" },
+    ["<D-,>"] = { "<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>", "show tips" },
     -- ["<D-.>"] = { "<cmd>Lspsaga code_action<CR>", "code action" },
     ["<D-.>"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "code action" },
 
