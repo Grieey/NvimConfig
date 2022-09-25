@@ -67,8 +67,9 @@ M.general = {
     ["<D-s>"] = { "<cmd> w <CR>", "save file" },
     ["<M-f>"] = { "<cmd>lua vim.lsp.buf.formatting()<CR>", "format" },
     -- tip
-    ["<D-x>"] = { "<cmd>Lspsaga show_line_diagnostics<CR>", "show tips" },
-    ["<D-.>"] = { "<cmd>Lspsaga code_action<CR>", "code action" },
+    ["<D-,>"] = { "<cmd>Lspsaga show_line_diagnostics<CR>", "show tips" },
+    -- ["<D-.>"] = { "<cmd>Lspsaga code_action<CR>", "code action" },
+    ["<D-.>"] = { "<cmd>lua vim.lsp.buf.code_action()<CR>", "code action" },
 
     -- Copy all
     ["<C-c>"] = { "<cmd> %y+ <CR>", "copy whole file" },
@@ -158,7 +159,7 @@ M.comment = {
 
   -- toggle comment in both modes
   n = {
-    ["<leader>/"] = {
+    ["<D-/>"] = {
       function()
         require("Comment.api").toggle.linewise.current()
       end,
@@ -167,7 +168,7 @@ M.comment = {
   },
 
   v = {
-    ["<leader>/"] = {
+    ["<D-/>"] = {
       "<ESC><cmd>lua require('Comment.api').toggle.linewise(vim.fn.visualmode())<CR>",
       "toggle comment",
     },
