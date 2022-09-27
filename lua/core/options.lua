@@ -65,7 +65,6 @@ if exists("g:neovide")
   let g:neovide_fullscreen=v:true
   let g:neovide_scroll_animation_length=0.3
   let g:neovide_input_macos_alt_is_meta=v:true
-  let g:neovide_floating_blur=0
 endif
 ]])
 -- disable some builtin vim plugins
