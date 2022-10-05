@@ -71,4 +71,20 @@ lspconfig.sumneko_lua.setup {
   },
 }
 
+-- local servers = {  "rust_analyzer",  "lua-language-server", "dart" }
+--
+-- for _, lsp in ipairs(servers) do
+--   lspconfig[lsp].setup {
+--     on_attach = M.on_attach,
+--     capabilities = M.capabilities,
+--     settings = {
+--       rust_analyzer = {
+--         checkOnSave = {
+--           command = "clippy",
+--         },
+--       },
+--     },
+--   }
+-- end
+
 return M

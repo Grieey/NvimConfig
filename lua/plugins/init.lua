@@ -166,10 +166,11 @@ local plugins = {
     opt = true,
     setup = function()
       require("core.lazy_load").on_file_open "nvim-lspconfig"
+      require("core.utils").load_mappings "lspconfig"
     end,
     config = function()
       require "plugins.configs.lspconfig"
-      require "custom.plugins.lspconfig"
+      -- require "custom.plugins.lspconfig"
     end,
   },
 
@@ -280,7 +281,7 @@ local plugins = {
       if ok then
         dressing.setup {
           select = {
-            backend = 'nui',
+            backend = "nui",
             nui = {
               position = "50%",
               size = nil,

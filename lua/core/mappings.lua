@@ -21,7 +21,7 @@ M.general = {
     -- ["<D-v>"] = { "<ESC>*pa", "paste from clipboard" },
     ["<D-v>"] = { "<ESC>pa", "paste from buffer" },
     -- 撤销
-    ["<D-z>"] = { "<ESC>ua", "redo and insert" },
+    ["<D-z>"] = { "<C-u>", "redo and insert" },
     -- 快速复制一行到下一行
     ["<D-d>"] = { "<ESC>yypA", "copy the line to next line and insert" },
     ["<D-s>"] = { "<cmd> w <CR>", "save file" },
